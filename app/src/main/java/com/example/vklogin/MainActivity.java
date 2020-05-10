@@ -1,6 +1,7 @@
 package com.example.vklogin;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
@@ -44,42 +45,14 @@ public class MainActivity extends AppCompatActivity {
     private TextView friendName4;
     private TextView friendName5;
     View b;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         try {
             if (!VKSdk.isLoggedIn()) {
-                b = findViewById(R.id.button2);
-                b.setVisibility(View.VISIBLE);
-                b = findViewById(R.id.exitBtn);
-                b.setVisibility(View.GONE);
-                b = findViewById(R.id.friendName5);
-                b.setVisibility(View.GONE);
-                b = findViewById(R.id.friendName4);
-                b.setVisibility(View.GONE);
-                b = findViewById(R.id.friendName3);
-                b.setVisibility(View.GONE);
-                b = findViewById(R.id.friendName2);
-                b.setVisibility(View.GONE);
-                b = findViewById(R.id.friendName1);
-                b.setVisibility(View.GONE);
-                b = findViewById(R.id.userName);
-                b.setVisibility(View.GONE);
-                b = findViewById(R.id.userName1);
-                b.setVisibility(View.GONE);
-                b = findViewById(R.id.userPic);
-                b.setVisibility(View.GONE);
-                b = findViewById(R.id.userPic1);
-                b.setVisibility(View.GONE);
-                b = findViewById(R.id.userPic2);
-                b.setVisibility(View.GONE);
-                b = findViewById(R.id.userPic3);
-                b.setVisibility(View.GONE);
-                b = findViewById(R.id.userPic4);
-                b.setVisibility(View.GONE);
-                b = findViewById(R.id.userPic5);
-                b.setVisibility(View.GONE);
+                start();
             } else {
                 enter();
             }
@@ -103,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
                 b.setVisibility(View.GONE);
                 b = findViewById(R.id.exitBtn);
                 b.setVisibility(View.VISIBLE);
-// Пользователь успешно авторизовался
             }
 
             int getMyId() {
@@ -203,20 +175,20 @@ public class MainActivity extends AppCompatActivity {
                 VKList list = (VKList) response.parsedModel;
                 userName.setText(list.get(0).toString());
                 String str = response.responseString;
-                String resultStr = str.substring(str.indexOf("\"photo_50\":\"") + 12, str.indexOf("\"}") );
+                String resultStr = str.substring(str.indexOf("\"photo_50\":\"") + 12, str.indexOf("\"}"));
                 String url = resultStr.replaceAll("\\\\", "");
-                resultStr = str.substring(str.indexOf("\"id\":") + 5, str.indexOf(",") );
+                resultStr = str.substring(str.indexOf("\"id\":") + 5, str.indexOf(","));
                 final String id = resultStr.replaceAll("\\\\", "");
                 userName.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("http://www.vk.com/id"+id)));
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.vk.com/id" + id)));
                     }
                 });
                 userPic.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("http://www.vk.com/id"+id)));
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.vk.com/id" + id)));
                     }
                 });
                 Picasso.get()
@@ -236,65 +208,65 @@ public class MainActivity extends AppCompatActivity {
                 friendName1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("http://www.vk.com/id"+array.get(0).id)));
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.vk.com/id" + array.get(0).id)));
                     }
                 });
                 userPic1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("http://www.vk.com/id"+array.get(0).id)));
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.vk.com/id" + array.get(0).id)));
                     }
                 });
                 friendName2.setText(array.get(1).first_name + " " + array.get(1).last_name);
                 friendName2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("http://www.vk.com/id"+array.get(1).id)));
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.vk.com/id" + array.get(1).id)));
                     }
                 });
                 userPic2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("http://www.vk.com/id"+array.get(1).id)));
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.vk.com/id" + array.get(1).id)));
                     }
                 });
                 friendName3.setText(array.get(2).first_name + " " + array.get(2).last_name);
                 friendName3.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("http://www.vk.com/id"+array.get(2).id)));
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.vk.com/id" + array.get(2).id)));
                     }
                 });
                 userPic3.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("http://www.vk.com/id"+array.get(2).id)));
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.vk.com/id" + array.get(2).id)));
                     }
                 });
                 friendName4.setText(array.get(2).first_name + " " + array.get(3).last_name);
                 friendName4.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("http://www.vk.com/id"+array.get(3).id)));
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.vk.com/id" + array.get(3).id)));
                     }
                 });
                 userPic4.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("http://www.vk.com/id"+array.get(3).id)));
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.vk.com/id" + array.get(3).id)));
                     }
                 });
                 friendName5.setText(array.get(4).first_name + " " + array.get(4).last_name);
                 friendName5.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("http://www.vk.com/id"+array.get(4).id)));
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.vk.com/id" + array.get(4).id)));
                     }
                 });
                 userPic5.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("http://www.vk.com/id"+array.get(4).id)));
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.vk.com/id" + array.get(4).id)));
                     }
                 });
                 Picasso.get()
@@ -348,6 +320,39 @@ public class MainActivity extends AppCompatActivity {
         b.setVisibility(View.VISIBLE);
         b = findViewById(R.id.userPic5);
         b.setVisibility(View.VISIBLE);
+    }
+
+    public void start() {
+        b = findViewById(R.id.button2);
+        b.setVisibility(View.VISIBLE);
+        b = findViewById(R.id.exitBtn);
+        b.setVisibility(View.GONE);
+        b = findViewById(R.id.friendName5);
+        b.setVisibility(View.GONE);
+        b = findViewById(R.id.friendName4);
+        b.setVisibility(View.GONE);
+        b = findViewById(R.id.friendName3);
+        b.setVisibility(View.GONE);
+        b = findViewById(R.id.friendName2);
+        b.setVisibility(View.GONE);
+        b = findViewById(R.id.friendName1);
+        b.setVisibility(View.GONE);
+        b = findViewById(R.id.userName);
+        b.setVisibility(View.GONE);
+        b = findViewById(R.id.userName1);
+        b.setVisibility(View.GONE);
+        b = findViewById(R.id.userPic);
+        b.setVisibility(View.GONE);
+        b = findViewById(R.id.userPic1);
+        b.setVisibility(View.GONE);
+        b = findViewById(R.id.userPic2);
+        b.setVisibility(View.GONE);
+        b = findViewById(R.id.userPic3);
+        b.setVisibility(View.GONE);
+        b = findViewById(R.id.userPic4);
+        b.setVisibility(View.GONE);
+        b = findViewById(R.id.userPic5);
+        b.setVisibility(View.GONE);
     }
 
 }
