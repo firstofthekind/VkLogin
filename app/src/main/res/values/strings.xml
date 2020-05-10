@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">VkLogin</string>
+    <string name="vk_oauth_login_friends_list_test_app">VK OAuth login + Friends list test App!</string>
+    <integer name="com_vk_sdk_AppId">7451700</integer>
+</resources>
