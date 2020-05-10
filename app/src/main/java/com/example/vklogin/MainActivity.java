@@ -3,6 +3,7 @@ package com.example.vklogin;
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -204,6 +205,20 @@ public class MainActivity extends AppCompatActivity {
                 String str = response.responseString;
                 String resultStr = str.substring(str.indexOf("\"photo_50\":\"") + 12, str.indexOf("\"}") );
                 String url = resultStr.replaceAll("\\\\", "");
+                resultStr = str.substring(str.indexOf("\"id\":") + 5, str.indexOf(",") );
+                final String id = resultStr.replaceAll("\\\\", "");
+                userName.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("http://www.vk.com/id"+id)));
+                    }
+                });
+                userPic.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("http://www.vk.com/id"+id)));
+                    }
+                });
                 Picasso.get()
                         .load(url)
                         .into(userPic);
@@ -216,12 +231,72 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onComplete(VKResponse response) {
                 super.onComplete(response);
-                VKUsersArray array = (VKUsersArray) response.parsedModel;
+                final VKUsersArray array = (VKUsersArray) response.parsedModel;
                 friendName1.setText(array.get(0).first_name + " " + array.get(0).last_name);
+                friendName1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("http://www.vk.com/id"+array.get(0).id)));
+                    }
+                });
+                userPic1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("http://www.vk.com/id"+array.get(0).id)));
+                    }
+                });
                 friendName2.setText(array.get(1).first_name + " " + array.get(1).last_name);
+                friendName2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("http://www.vk.com/id"+array.get(1).id)));
+                    }
+                });
+                userPic2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("http://www.vk.com/id"+array.get(1).id)));
+                    }
+                });
                 friendName3.setText(array.get(2).first_name + " " + array.get(2).last_name);
-                friendName4.setText(array.get(3).first_name + " " + array.get(3).last_name);
+                friendName3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("http://www.vk.com/id"+array.get(2).id)));
+                    }
+                });
+                userPic3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("http://www.vk.com/id"+array.get(2).id)));
+                    }
+                });
+                friendName4.setText(array.get(2).first_name + " " + array.get(3).last_name);
+                friendName4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("http://www.vk.com/id"+array.get(3).id)));
+                    }
+                });
+                userPic4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("http://www.vk.com/id"+array.get(3).id)));
+                    }
+                });
                 friendName5.setText(array.get(4).first_name + " " + array.get(4).last_name);
+                friendName5.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("http://www.vk.com/id"+array.get(4).id)));
+                    }
+                });
+                userPic5.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("http://www.vk.com/id"+array.get(4).id)));
+                    }
+                });
                 Picasso.get()
                         .load(array.get(0).photo_50)
                         .into(userPic1);
@@ -274,4 +349,5 @@ public class MainActivity extends AppCompatActivity {
         b = findViewById(R.id.userPic5);
         b.setVisibility(View.VISIBLE);
     }
+
 }
