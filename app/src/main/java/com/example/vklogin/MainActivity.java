@@ -1,7 +1,5 @@
 package com.example.vklogin;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
@@ -11,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.squareup.picasso.Picasso;
 import com.vk.sdk.VKAccessToken;
@@ -243,7 +243,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.vk.com/id" + array.get(2).id)));
                     }
                 });
-                friendName4.setText(array.get(2).first_name + " " + array.get(3).last_name);
+                friendName4.setText(array.get(3).first_name + " " + array.get(3).last_name);
                 friendName4.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
